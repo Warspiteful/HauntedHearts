@@ -1,0 +1,32 @@
+﻿I'm sorry, but an uncaught exception occurred.
+
+While running game code:
+  File "game/script.rpy", line 64, in script
+    "Out of everyone that piques your interest, there’s [have pictures fade in and out as the descriptions come and go] a creepy looking guy in a robe and glasses, a beefy vampire in shorts and a sleeveless shirt, a really impressive Mothman costume with... a detective's outfit on top? And... a classic bedsheet ghost."
+KeyError: u'have pictures fade in and out as the descriptions come and go'
+
+-- Full Traceback ------------------------------------------------------------
+
+Full traceback:
+  File "game/script.rpy", line 64, in script
+    "Out of everyone that piques your interest, there’s [have pictures fade in and out as the descriptions come and go] a creepy looking guy in a robe and glasses, a beefy vampire in shorts and a sleeveless shirt, a really impressive Mothman costume with... a detective's outfit on top? And... a classic bedsheet ghost."
+  File "renpy/ast.py", line 715, in execute
+    renpy.exports.say(who, what, *args, **kwargs)
+  File "renpy/exports.py", line 1393, in say
+    who(what, *args, **kwargs)
+  File "renpy/character.py", line 1190, in __call__
+    what = what_pattern.replace("[what]", sub(what, translate=True))
+  File "renpy/character.py", line 1179, in sub
+    return renpy.substitutions.substitute(s, scope=scope, force=force, translate=translate)[0]
+  File "renpy/substitutions.py", line 270, in substitute
+    s = formatter.vformat(s, (), kwargs)
+  File "/home/tom/ab/renpy-build/tmp/install.linux-x86_64/lib/python2.7/string.py", line 563, in vformat
+  File "/home/tom/ab/renpy-build/tmp/install.linux-x86_64/lib/python2.7/string.py", line 585, in _vformat
+  File "/home/tom/ab/renpy-build/tmp/install.linux-x86_64/lib/python2.7/string.py", line 646, in get_field
+  File "/home/tom/ab/renpy-build/tmp/install.linux-x86_64/lib/python2.7/string.py", line 605, in get_value
+KeyError: u'have pictures fade in and out as the descriptions come and go'
+
+Windows-10-10.0.19041
+Ren'Py 7.4.4.1439
+HauntedHearts 1.0
+Sun Sep 26 18:55:51 2021
