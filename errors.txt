@@ -2,8 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 11: is not terminated with a newline. (Check strings and parenthesis.)
-    define e = Character("Echo"
+File "game/script.rpy", line 390: play requires a file
+    play echo_bad
+                 ^
 
 Ren'Py Version: Ren'Py 7.4.4.1439
-Sun Sep 26 19:00:06 2021
+Fri Oct  1 00:44:14 2021

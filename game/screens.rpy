@@ -223,7 +223,7 @@ style choice_button_text is button_text
 
 style choice_vbox:
     xalign 0.5
-    ypos 405
+    ypos 480
     yanchor 0.5
 
     spacing gui.choice_spacing
@@ -288,6 +288,16 @@ style quick_button_text:
 ##
 ## This screen is included in the main and game menus, and provides navigation
 ## to other menus, and to start the game.
+
+init python:
+    renpy.music.register_channel("first", "sfx", False)
+    renpy.music.register_channel("second", "sfx", False)
+    renpy.music.set_volume(0.1,0,"first")
+    renpy.music.set_volume(0.1,0,"second")
+
+if (renpy.music.is_playing("second")):
+    while (renpy.music.is_playing("second")):
+        pause 1.0
 
 screen navigation():
 
@@ -359,24 +369,55 @@ screen main_menu():
 
     add gui.main_menu_background
 
-    ## This empty frame darkens the main menu.
-    frame:
-        style "main_menu_frame"
+    image "/gui/Title/002_titlename.png"
+
 
     ## The use statement includes another screen inside this one. The actual
     ## contents of the main menu are in the navigation screen.
-    use navigation
+    hbox:
+        style_prefix "navigation" 
 
-    if gui.show_name:
+        #xpos gui.navigation_xpos
+        #yalign 0.5
 
-        vbox:
-            style "main_menu_vbox"
 
-            text "[config.name!t]":
-                style "main_menu_title"
+           
+        imagebutton:
+            auto "/gui/Title/001_title_chad_%s.png" focus_mask True xpos 0 ypos 0 action Play("second", "./audio/sfx/Chadimir.wav",0.5), Start()
 
-            text "[config.version]":
-                style "main_menu_version"
+        imagebutton auto "gui/Title/001_title_moth_%s.png" focus_mask True xpos -1925 ypos 0 action  Play("second", "./audio/sfx/Mothman.wav",0.5),  ShowMenu("preferences")
+        
+        imagebutton auto "gui/Title/001_title_franky_%s.png" focus_mask True xpos -3850 ypos 0  action Play("second", "./audio/sfx/Franky.wav",0.5), ShowMenu("credits")
+       
+
+    
+
+        if _in_replay:
+
+            textbutton _("End Replay") action EndReplay(confirm=True)
+
+        elif not main_menu:
+
+            textbutton _("Main Menu") action MainMenu()
+
+           
+        imagebutton auto "gui/Title/001_title_echo_%s.png" focus_mask True xpos -5780 ypos 0 action Play("second", "./audio/sfx/Echo.wav",0.5), Quit(confirm=not main_menu) 
+#
+ #           if renpy.variant("pc") or (renpy.variant("web") and not renpy.variant("mobile")):
+#
+                ## Help isn't necessary or relevant to mobile devices.
+                
+ #               imagebutton auto "images/MainMenu/BH_help_%s.png" focus_mask True action ShowMenu("help"), Play("second",renpy.random.choice(["./audio/UI/OpenMenu1.wav", "./audio/UI/OpenMenu2.wav"]), 0.5)
+                
+  #          if renpy.variant("pc"):
+
+                ## The quit button is banned on iOS and unnecessary on Android and
+                ## Web.
+             
+   #             imagebutton auto "images/MainMenu/BH_quit_%s.png" focus_mask True action Quit(confirm=not main_menu), Play("second",renpy.random.choice(["./audio/UI/OpenMenu1.wav", "./audio/UI/OpenMenu2.wav"]), 0.5)
+                
+
+    
 
 
 style main_menu_frame is empty
@@ -389,7 +430,6 @@ style main_menu_frame:
     xsize 420
     yfill True
 
-    background "gui/overlay/main_menu.png"
 
 style main_menu_vbox:
     xalign 1.0
@@ -1189,6 +1229,30 @@ style confirm_button:
 style confirm_button_text:
     properties gui.button_text_properties("confirm_button")
 
+## CREDITS
+
+screen credits():
+    tag menu
+    
+    frame:
+        background "images/Backgrounds/004_background.png"
+        vbox: #This puts the elements in a vertical box, you could use an hbox or a grid or a fixed, etc.
+            xpos 540
+            ypos 150
+            spacing 45
+            
+           
+            text "Raydee99 - Producer, Composer, Additional Writing" 
+            text "625ApplePie / Cy Greene - Character Designer, Artist"
+            text "Gem - Background Artist, Title UI"
+            text "DannyGoldstar - Composer"
+            text "Jonathon \"Jon Bic\" Bickelhaupt - Writer"
+            text "APBuffy / Alexa Parker Brown - Character Design, Character Artist"
+            text "Megan Karow - Writer"
+            text "Steve Lausier - Writer"
+            text "Emma Hunt - Writer"
+            text "Warspiteful - Programmer"
+            textbutton _("Return") action Return() 
 
 ## Skip indicator screen #######################################################
 ##

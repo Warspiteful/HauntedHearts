@@ -12,7 +12,7 @@
 ##
 ## The _() surrounding the string marks it as eligible for translation.
 
-define config.name = _("HauntedHearts")
+define config.name = _("Hearts of Hallow's Eve")
 
 
 ## Determines if the title given above is shown on the main menu screen. Set
@@ -30,6 +30,8 @@ define config.version = "1.0"
 ## triple-quotes, and leave a blank line between paragraphs.
 
 define gui.about = _p("""
+
+
 """)
 
 
@@ -37,7 +39,7 @@ define gui.about = _p("""
 ## distribution. This must be ASCII-only, and must not contain spaces, colons,
 ## or semicolons.
 
-define build.name = "HauntedHearts"
+define build.name = "HeartsOfHallowsEve"
 
 
 ## Sounds and music ############################################################
@@ -94,6 +96,7 @@ define config.end_game_transition = None
 ## A variable to set the transition used when the game starts does not exist.
 ## Instead, use a with statement after showing the initial scene.
 
+define config.default_fullscreen = True
 
 ## Window management ###########################################################
 ##
@@ -149,7 +152,7 @@ define config.save_directory = "HauntedHearts-1632418833"
 ##
 ## The icon displayed on the taskbar or dock.
 
-define config.window_icon = "gui/window_icon.png"
+define config.window_icon = "gui/003_itchcard.png"
 
 
 ## Build configuration #########################################################
