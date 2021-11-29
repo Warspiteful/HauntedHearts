@@ -40,6 +40,7 @@ define gui.about = _p("""
 ## or semicolons.
 
 define build.name = "HeartsOfHallowsEve"
+define config.layers = [ 'master', 'transient', 'screens', 'border_overlay', 'overlay' ]
 
 
 ## Sounds and music ############################################################

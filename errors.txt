@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 390: play requires a file
-    play echo_bad
-                 ^
+File "game/extra.rpy", line 1: expected ':' not found.
+    init -5 python
+                  ^
 
-Ren'Py Version: Ren'Py 7.4.4.1439
-Fri Oct  1 00:44:14 2021
+Ren'Py Version: Ren'Py 7.4.10.2178
+Sun Nov 28 20:06:34 2021

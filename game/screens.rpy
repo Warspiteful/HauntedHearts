@@ -375,22 +375,22 @@ screen main_menu():
     ## The use statement includes another screen inside this one. The actual
     ## contents of the main menu are in the navigation screen.
     hbox:
-        style_prefix "navigation" 
+        style_prefix "navigation"
 
         #xpos gui.navigation_xpos
         #yalign 0.5
 
 
-           
+
         imagebutton:
             auto "/gui/Title/001_title_chad_%s.png" focus_mask True xpos 0 ypos 0 action Play("second", "./audio/sfx/Chadimir.wav",0.5), Start()
 
         imagebutton auto "gui/Title/001_title_moth_%s.png" focus_mask True xpos -1925 ypos 0 action  Play("second", "./audio/sfx/Mothman.wav",0.5),  ShowMenu("preferences")
-        
-        imagebutton auto "gui/Title/001_title_franky_%s.png" focus_mask True xpos -3850 ypos 0  action Play("second", "./audio/sfx/Franky.wav",0.5), ShowMenu("credits")
-       
 
-    
+        imagebutton auto "gui/Title/001_title_franky_%s.png" focus_mask True xpos -3850 ypos 0  action Play("second", "./audio/sfx/Franky.wav",0.5), ShowMenu("credits")
+
+
+
 
         if _in_replay:
 
@@ -400,24 +400,24 @@ screen main_menu():
 
             textbutton _("Main Menu") action MainMenu()
 
-           
-        imagebutton auto "gui/Title/001_title_echo_%s.png" focus_mask True xpos -5780 ypos 0 action Play("second", "./audio/sfx/Echo.wav",0.5), Quit(confirm=not main_menu) 
+
+        imagebutton auto "gui/Title/001_title_echo_%s.png" focus_mask True xpos -5780 ypos 0 action Play("second", "./audio/sfx/Echo.wav",0.5), Quit(confirm=not main_menu)
 #
  #           if renpy.variant("pc") or (renpy.variant("web") and not renpy.variant("mobile")):
 #
                 ## Help isn't necessary or relevant to mobile devices.
-                
+
  #               imagebutton auto "images/MainMenu/BH_help_%s.png" focus_mask True action ShowMenu("help"), Play("second",renpy.random.choice(["./audio/UI/OpenMenu1.wav", "./audio/UI/OpenMenu2.wav"]), 0.5)
-                
+
   #          if renpy.variant("pc"):
 
                 ## The quit button is banned on iOS and unnecessary on Android and
                 ## Web.
-             
-   #             imagebutton auto "images/MainMenu/BH_quit_%s.png" focus_mask True action Quit(confirm=not main_menu), Play("second",renpy.random.choice(["./audio/UI/OpenMenu1.wav", "./audio/UI/OpenMenu2.wav"]), 0.5)
-                
 
-    
+   #             imagebutton auto "images/MainMenu/BH_quit_%s.png" focus_mask True action Quit(confirm=not main_menu), Play("second",renpy.random.choice(["./audio/UI/OpenMenu1.wav", "./audio/UI/OpenMenu2.wav"]), 0.5)
+
+
+
 
 
 style main_menu_frame is empty
@@ -1233,16 +1233,16 @@ style confirm_button_text:
 
 screen credits():
     tag menu
-    
+
     frame:
         background "images/Backgrounds/004_background.png"
         vbox: #This puts the elements in a vertical box, you could use an hbox or a grid or a fixed, etc.
             xpos 540
             ypos 150
             spacing 45
-            
-           
-            text "Raydee99 - Producer, Composer, Additional Writing" 
+
+
+            text "Raydee99 - Producer, Composer, Additional Writing"
             text "625ApplePie / Cy Greene - Character Designer, Artist"
             text "Gem - Background Artist, Title UI"
             text "DannyGoldstar - Composer"
@@ -1252,7 +1252,7 @@ screen credits():
             text "Steve Lausier - Writer"
             text "Emma Hunt - Writer"
             text "Warspiteful - Programmer"
-            textbutton _("Return") action Return() 
+            textbutton _("Return") action Return()
 
 ## Skip indicator screen #######################################################
 ##
@@ -1335,18 +1335,35 @@ transform notify_appear:
     on hide:
         linear .5 alpha 0.0
 
+screen notify_music(song):
+    zorder 100
+    style_prefix "notify"
+    layer "border_overlay"
+    frame at notify_appear:
+        has hbox:
+            spacing 30
+        text "Now playing: {}".format(song) slow_cps True
+    timer 3.25 action Hide('notify_music')
 
 style notify_frame is empty
 style notify_text is gui_text
 
 style notify_frame:
-    ypos gui.notify_ypos
+    ypos 20
 
-    background Frame("gui/notify.png", gui.notify_frame_borders, tile=gui.frame_tile)
-    padding gui.notify_frame_borders.padding
+    background Frame("gui/speech.webp", 35,35)
+    ypadding 18
+    left_padding 50
+    right_padding 100
+    xalign 1.02
+
+
+define pbh_brown = "#422525"
 
 style notify_text:
     properties gui.text_properties("notify")
+    size 28
+    color pbh_brown
 
 
 ## NVL screen ##################################################################
